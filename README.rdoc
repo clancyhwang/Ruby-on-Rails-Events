@@ -1,9 +1,8 @@
 Rails Events project
+=========================
 Deployed at http://clancyhwang.herokuapp.com
 
-
-
-It's web application to create/modify/delete/update events,
+It's a web application to create/modify/delete/update events,
 and even register for events.
 Try it out, 
 notice:
