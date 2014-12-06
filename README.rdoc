@@ -1,28 +1,8 @@
-== README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Rails Events project
+Deployed at clancyhwang.herokuapp.com 
+It's web application to create/modify/delete/update events,
+and even register for events.
+Try it out, 
+notice:
+Only create events that are at least two days or more in the future
+(old events is automatically set to not-shown and there is a time zone issue)
