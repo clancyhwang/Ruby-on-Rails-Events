@@ -1,0 +1,2615 @@
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (1.0ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateEvents (20121121153536)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "events" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "location" varchar(255), "price" decimal, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20121121153536"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+Migrating to AddFieldsToEvents (20121121175436)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (1.3ms)[0m  [1mALTER TABLE "events" ADD "starts_at" datetime[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "events" ADD "description" text
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20121121175436"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to AddImageFileAndCapacityToEvents (20121210230623)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "events" ADD "image_file_name" varchar(255)
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "events" ADD "capacity" integer DEFAULT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20121210230623"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+Migrating to CreateRegistrations (20121214204822)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "registrations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "how_heard" varchar(255), "event_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_registrations_on_event_id" ON "registrations" ("event_id")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20121214204822"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "events"[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "registrations"
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-07 16:08:25 -0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (0.2ms)[0m  SELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:08:25.461519') ORDER BY "events"."starts_at" ASC
+  Rendered events/index.html.erb within layouts/application (2.5ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+  Rendered layouts/_flashes.html.erb (0.8ms)
+  Rendered layouts/_sidebar.html.erb (1.1ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 1302ms (Views: 1283.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-07 16:08:26 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-07 16:08:26 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-07 16:08:26 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-07 16:08:26 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-07 16:08:26 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-07 16:08:26 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-07 16:08:26 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-07 16:08:26 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-07 16:08:26 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-07 16:08:26 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-07 16:08:26 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-07 16:08:26 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-07 16:08:26 -0800
+
+
+Started GET "/assets/background.jpg" for 127.0.0.1 at 2014-11-07 16:08:26 -0800
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-11-07 16:08:26 -0800
+
+
+Started GET "/assets/arrow.png" for 127.0.0.1 at 2014-11-07 16:08:26 -0800
+
+
+Started GET "/assets/add.png" for 127.0.0.1 at 2014-11-07 16:08:27 -0800
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "events"[0m
+
+
+Started GET "/events" for 127.0.0.1 at 2014-11-07 16:09:44 -0800
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:09:44.574392') ORDER BY "events"."starts_at" ASC[0m
+  Rendered events/index.html.erb within layouts/application (1.1ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+  Rendered layouts/_flashes.html.erb (0.4ms)
+  Rendered layouts/_sidebar.html.erb (0.5ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 11ms (Views: 10.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/events" for 127.0.0.1 at 2014-11-07 16:09:46 -0800
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (0.1ms)[0m  SELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:09:46.247840') ORDER BY "events"."starts_at" ASC
+  Rendered events/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 9ms (Views: 7.5ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/events/new" for 127.0.0.1 at 2014-11-07 16:09:46 -0800
+Processing by EventsController#new as HTML
+  Rendered shared/_errors.html.erb (2.9ms)
+  Rendered events/_form.html.erb (37.0ms)
+  Rendered events/new.html.erb within layouts/application (38.6ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 56ms (Views: 54.4ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/events" for 127.0.0.1 at 2014-11-07 16:10:02 -0800
+Processing by EventsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"j2QxjuBakEuf1yEHD4wVP7n+Rj3pwW79cL2+HEP9Tug=", "event"=>{"name"=>"NBA", "description"=>"TestingTestingTestingTestingTestingTestingTestingTestingTestingTesting", "location"=>"SA", "price"=>"24", "starts_at(1i)"=>"2014", "starts_at(2i)"=>"12", "starts_at(3i)"=>"8", "starts_at(4i)"=>"00", "starts_at(5i)"=>"09", "capacity"=>"1", "image_file_name"=>""}, "commit"=>"Create Event"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "events" ("created_at", "description", "image_file_name", "location", "name", "price", "starts_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", Sat, 08 Nov 2014 00:10:02 UTC +00:00], ["description", "TestingTestingTestingTestingTestingTestingTestingTestingTestingTesting"], ["image_file_name", ""], ["location", "SA"], ["name", "NBA"], ["price", #<BigDecimal:7fc603299840,'0.24E2',9(18)>], ["starts_at", Mon, 08 Dec 2014 00:09:00 UTC +00:00], ["updated_at", Sat, 08 Nov 2014 00:10:02 UTC +00:00]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/events/1
+Completed 302 Found in 8ms (ActiveRecord: 1.2ms)
+
+
+Started GET "/events/1" for 127.0.0.1 at 2014-11-07 16:10:03 -0800
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mEvent Load (0.3ms)[0m  SELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mRegistration Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "registrations" WHERE "registrations"."event_id" = ? LIMIT 1[0m  [["event_id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "registrations" WHERE "registrations"."event_id" = ?  [["event_id", 1]]
+  Rendered events/show.html.erb within layouts/application (55.7ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 67ms (Views: 63.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/placeholder.png" for 127.0.0.1 at 2014-11-07 16:10:03 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-07 16:10:04 -0800
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:10:04.922370') ORDER BY "events"."starts_at" ASC[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "registrations" WHERE "registrations"."event_id" = ?  [["event_id", 1]]
+  Rendered events/index.html.erb within layouts/application (2.3ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 10ms (Views: 9.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-07 16:10:42 -0800
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:10:42.852897') ORDER BY "events"."starts_at" ASC[0m
+  Rendered events/index.html.erb within layouts/application (0.8ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 13ms (Views: 12.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-07 16:10:42 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-07 16:10:42 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-07 16:10:42 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-07 16:10:42 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-07 16:10:42 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-07 16:10:42 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-07 16:10:42 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-07 16:10:42 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-07 16:10:42 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-07 16:10:42 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-07 16:10:42 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-07 16:10:42 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-07 16:10:42 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-07 16:10:43 -0800
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (0.1ms)[0m  SELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:10:43.785671') ORDER BY "events"."starts_at" ASC
+  Rendered events/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 9ms (Views: 8.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-07 16:10:43 -0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-07 16:10:43 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-07 16:10:43 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-07 16:10:43 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-07 16:10:43 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-07 16:10:43 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-07 16:10:43 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-07 16:10:43 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-07 16:10:43 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-07 16:10:43 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-07 16:10:43 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-07 16:10:43 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-07 16:10:43 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-07 16:10:44 -0800
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.1ms)[0m  [1mSELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:10:44.328765') ORDER BY "events"."starts_at" ASC[0m
+  Rendered events/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 9ms (Views: 7.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-07 16:16:53 -0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (0.4ms)[0m  SELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:16:53.220483') ORDER BY "events"."starts_at" ASC
+  Rendered events/index.html.erb within layouts/application (2.4ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+  Rendered layouts/_flashes.html.erb (0.4ms)
+  Rendered layouts/_sidebar.html.erb (7.8ms)
+  Rendered layouts/_footer.html.erb (0.7ms)
+Completed 200 OK in 118ms (Views: 102.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-07 16:16:53 -0800
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:16:53.330856') ORDER BY "events"."starts_at" ASC[0m
+  Rendered events/index.html.erb within layouts/application (0.7ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 9ms (Views: 7.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-07 16:16:53 -0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-07 16:16:53 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-07 16:16:53 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-07 16:16:53 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-07 16:16:53 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-07 16:16:53 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-07 16:16:53 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-07 16:16:53 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-07 16:16:53 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-07 16:16:53 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-07 16:16:53 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-07 16:16:53 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-07 16:16:53 -0800
+
+
+Started GET "/assets/background.jpg" for 127.0.0.1 at 2014-11-07 16:16:53 -0800
+
+
+Started GET "/assets/arrow.png" for 127.0.0.1 at 2014-11-07 16:16:53 -0800
+
+
+Started GET "/assets/add.png" for 127.0.0.1 at 2014-11-07 16:16:53 -0800
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-11-07 16:16:53 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-07 16:21:20 -0800
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (0.5ms)[0m  SELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:21:20.061137') ORDER BY "events"."starts_at" ASC
+  Rendered events/index.html.erb within layouts/application (1.3ms)
+  Rendered layouts/_header.html.erb (2.7ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 37ms (Views: 35.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-07 16:21:20 -0800
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.4ms)[0m  [1mSELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:21:20.606069') ORDER BY "events"."starts_at" ASC[0m
+  Rendered events/index.html.erb within layouts/application (2.6ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+  Rendered layouts/_flashes.html.erb (0.3ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 30ms (Views: 28.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:20 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:20 -0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:20 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:20 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:20 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:20 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:20 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:20 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:20 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:20 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:20 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:20 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:20 -0800
+
+
+Started GET "/assets/background.jpg" for 127.0.0.1 at 2014-11-07 16:21:20 -0800
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-11-07 16:21:20 -0800
+
+
+Started GET "/assets/add.png" for 127.0.0.1 at 2014-11-07 16:21:20 -0800
+
+
+Started GET "/assets/arrow.png" for 127.0.0.1 at 2014-11-07 16:21:20 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-07 16:21:23 -0800
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (0.1ms)[0m  SELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:21:23.430280') ORDER BY "events"."starts_at" ASC
+  Rendered events/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 8ms (Views: 6.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:23 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:23 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:23 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:23 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:23 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:23 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:23 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:23 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:23 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:23 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:23 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:23 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:23 -0800
+
+
+Started GET "/events/new" for 127.0.0.1 at 2014-11-07 16:21:27 -0800
+Processing by EventsController#new as HTML
+  Rendered shared/_errors.html.erb (7.3ms)
+  Rendered events/_form.html.erb (41.0ms)
+  Rendered events/new.html.erb within layouts/application (42.5ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+  Rendered layouts/_flashes.html.erb (0.3ms)
+  Rendered layouts/_sidebar.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 54ms (Views: 51.2ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/events" for 127.0.0.1 at 2014-11-07 16:21:34 -0800
+Processing by EventsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"j2QxjuBakEuf1yEHD4wVP7n+Rj3pwW79cL2+HEP9Tug=", "event"=>{"name"=>"Testing", "description"=>"git push origin mastergit push origin mastergit push origin mastergit push origin mastergit push origin master", "location"=>"Berkeley, CA", "price"=>"24", "starts_at(1i)"=>"2014", "starts_at(2i)"=>"11", "starts_at(3i)"=>"8", "starts_at(4i)"=>"00", "starts_at(5i)"=>"21", "capacity"=>"1", "image_file_name"=>""}, "commit"=>"Create Event"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "events" ("created_at", "description", "image_file_name", "location", "name", "price", "starts_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", Sat, 08 Nov 2014 00:21:34 UTC +00:00], ["description", "git push origin mastergit push origin mastergit push origin mastergit push origin mastergit push origin master"], ["image_file_name", ""], ["location", "Berkeley, CA"], ["name", "Testing"], ["price", #<BigDecimal:7fe93b6622a0,'0.24E2',9(18)>], ["starts_at", Sat, 08 Nov 2014 00:21:00 UTC +00:00], ["updated_at", Sat, 08 Nov 2014 00:21:34 UTC +00:00]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/events/2
+Completed 302 Found in 11ms (ActiveRecord: 1.8ms)
+
+
+Started GET "/events/2" for 127.0.0.1 at 2014-11-07 16:21:34 -0800
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mEvent Load (0.2ms)[0m  SELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36mRegistration Exists (0.5ms)[0m  [1mSELECT 1 AS one FROM "registrations" WHERE "registrations"."event_id" = ? LIMIT 1[0m  [["event_id", 2]]
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM "registrations" WHERE "registrations"."event_id" = ?  [["event_id", 2]]
+  Rendered events/show.html.erb within layouts/application (39.8ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 52ms (Views: 47.4ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:35 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:35 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:35 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:35 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:35 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:35 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:35 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:35 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:35 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:35 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:35 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:35 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:35 -0800
+
+
+Started GET "/assets/placeholder.png" for 127.0.0.1 at 2014-11-07 16:21:35 -0800
+
+
+Started GET "/events/2" for 127.0.0.1 at 2014-11-07 16:21:36 -0800
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEvent Load (0.1ms)[0m  [1mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mRegistration Exists (0.1ms)[0m  SELECT 1 AS one FROM "registrations" WHERE "registrations"."event_id" = ? LIMIT 1  [["event_id", 2]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."event_id" = ?[0m  [["event_id", 2]]
+  Rendered events/show.html.erb within layouts/application (11.2ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 20ms (Views: 18.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:36 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:36 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:36 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:36 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:36 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:36 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:36 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:36 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:36 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:36 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:36 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:36 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:36 -0800
+
+
+Started GET "/assets/placeholder.png" for 127.0.0.1 at 2014-11-07 16:21:36 -0800
+
+
+Started GET "/events/2" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mEvent Load (0.1ms)[0m  SELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36mRegistration Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "registrations" WHERE "registrations"."event_id" = ? LIMIT 1[0m  [["event_id", 2]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "registrations" WHERE "registrations"."event_id" = ?  [["event_id", 2]]
+  Rendered events/show.html.erb within layouts/application (2.3ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 11ms (Views: 10.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+
+
+Started GET "/assets/placeholder.png" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+
+
+Started GET "/events/2" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEvent Load (0.1ms)[0m  [1mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mRegistration Exists (0.2ms)[0m  SELECT 1 AS one FROM "registrations" WHERE "registrations"."event_id" = ? LIMIT 1  [["event_id", 2]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."event_id" = ?[0m  [["event_id", 2]]
+  Rendered events/show.html.erb within layouts/application (3.3ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 13ms (Views: 10.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+
+
+Started GET "/assets/placeholder.png" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+
+
+Started GET "/events/2" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mEvent Load (0.1ms)[0m  SELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36mRegistration Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "registrations" WHERE "registrations"."event_id" = ? LIMIT 1[0m  [["event_id", 2]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "registrations" WHERE "registrations"."event_id" = ?  [["event_id", 2]]
+  Rendered events/show.html.erb within layouts/application (3.4ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 12ms (Views: 10.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:37 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:38 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:38 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:38 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:38 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:38 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:38 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:38 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:38 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:38 -0800
+
+
+Started GET "/assets/placeholder.png" for 127.0.0.1 at 2014-11-07 16:21:38 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-07 16:21:38 -0800
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.1ms)[0m  [1mSELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:21:38.249107') ORDER BY "events"."starts_at" ASC[0m
+  Rendered events/index.html.erb within layouts/application (1.1ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 9ms (Views: 8.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-07 16:21:39 -0800
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (0.2ms)[0m  SELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:21:39.691662') ORDER BY "events"."starts_at" ASC
+  Rendered events/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 8ms (Views: 7.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-07 16:21:40 -0800
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:21:40.138333') ORDER BY "events"."starts_at" ASC[0m
+  Rendered events/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 9ms (Views: 8.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-07 16:21:40 -0800
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (0.1ms)[0m  SELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:21:40.340013') ORDER BY "events"."starts_at" ASC
+  Rendered events/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 13ms (Views: 11.6ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-07 16:21:40 -0800
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:21:40.477380') ORDER BY "events"."starts_at" ASC[0m
+  Rendered events/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 10ms (Views: 8.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:40 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:40 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:40 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:40 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:40 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:40 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:40 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:40 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:40 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:40 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:40 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:40 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:40 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (0.1ms)[0m  SELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:21:41.238466') ORDER BY "events"."starts_at" ASC
+  Rendered events/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 8ms (Views: 6.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.1ms)[0m  [1mSELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:21:41.459830') ORDER BY "events"."starts_at" ASC[0m
+  Rendered events/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 10ms (Views: 9.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (0.2ms)[0m  SELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:21:41.750679') ORDER BY "events"."starts_at" ASC
+  Rendered events/index.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 9ms (Views: 8.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:41 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:21:42.151172') ORDER BY "events"."starts_at" ASC[0m
+  Rendered events/index.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 8ms (Views: 7.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (0.2ms)[0m  SELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:21:42.329440') ORDER BY "events"."starts_at" ASC
+  Rendered events/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 10ms (Views: 8.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.3ms)[0m  [1mSELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:21:42.556430') ORDER BY "events"."starts_at" ASC[0m
+  Rendered events/index.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 15ms (Views: 13.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (0.2ms)[0m  SELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:21:42.735221') ORDER BY "events"."starts_at" ASC
+  Rendered events/index.html.erb within layouts/application (0.7ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (2.0ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 17ms (Views: 15.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-07 16:21:42 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-07 16:22:05 -0800
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:22:05.616375') ORDER BY "events"."starts_at" ASC[0m
+  Rendered events/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 8ms (Views: 7.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:05 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:05 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:05 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:05 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:05 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:05 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:05 -0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:05 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:05 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:05 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:05 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:05 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:05 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (0.2ms)[0m  SELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:22:06.151083') ORDER BY "events"."starts_at" ASC
+  Rendered events/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 9ms (Views: 7.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:22:06.343546') ORDER BY "events"."starts_at" ASC[0m
+  Rendered events/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 11ms (Views: 10.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (0.1ms)[0m  SELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:22:06.559903') ORDER BY "events"."starts_at" ASC
+  Rendered events/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 12ms (Views: 10.6ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.6ms)[0m  [1mSELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:22:06.708089') ORDER BY "events"."starts_at" ASC[0m
+  Rendered events/index.html.erb within layouts/application (1.2ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 14ms (Views: 11.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (0.5ms)[0m  SELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:22:06.877602') ORDER BY "events"."starts_at" ASC
+  Rendered events/index.html.erb within layouts/application (2.2ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 13ms (Views: 11.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:06 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:07 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:07 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:07 -0800
+
+
+Started GET "/events/new" for 127.0.0.1 at 2014-11-07 16:22:07 -0800
+Processing by EventsController#new as HTML
+  Rendered shared/_errors.html.erb (0.1ms)
+  Rendered events/_form.html.erb (11.5ms)
+  Rendered events/new.html.erb within layouts/application (12.2ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered layouts/_flashes.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 22ms (Views: 20.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/events" for 127.0.0.1 at 2014-11-07 16:22:33 -0800
+Processing by EventsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"j2QxjuBakEuf1yEHD4wVP7n+Rj3pwW79cL2+HEP9Tug=", "event"=>{"name"=>"NBA", "description"=>"git push origin mastergit push origin mastergit push origin mastergit push origin mastergit push origin mastergit push origin master", "location"=>"Berkeley, CA", "price"=>"24", "starts_at(1i)"=>"2014", "starts_at(2i)"=>"11", "starts_at(3i)"=>"9", "starts_at(4i)"=>"00", "starts_at(5i)"=>"22", "capacity"=>"1", "image_file_name"=>""}, "commit"=>"Create Event"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (4939.9ms)[0m  INSERT INTO "events" ("created_at", "description", "image_file_name", "location", "name", "price", "starts_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", Sat, 08 Nov 2014 00:22:33 UTC +00:00], ["description", "git push origin mastergit push origin mastergit push origin mastergit push origin mastergit push origin mastergit push origin master"], ["image_file_name", ""], ["location", "Berkeley, CA"], ["name", "NBA"], ["price", #<BigDecimal:7fe93af55570,'0.24E2',9(18)>], ["starts_at", Sun, 09 Nov 2014 00:22:00 UTC +00:00], ["updated_at", Sat, 08 Nov 2014 00:22:33 UTC +00:00]]
+SQLite3::BusyException: database is locked: INSERT INTO "events" ("created_at", "description", "image_file_name", "location", "name", "price", "starts_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+Completed 500 Internal Server Error in 4944ms
+
+ActiveRecord::StatementInvalid (SQLite3::BusyException: database is locked: INSERT INTO "events" ("created_at", "description", "image_file_name", "location", "name", "price", "starts_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)):
+  app/controllers/events_controller.rb:30:in `create'
+
+
+  Rendered /Users/Clancy/.rvm/rubies/ruby-2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.0.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.7ms)
+  Rendered /Users/Clancy/.rvm/rubies/ruby-2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.0.5/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /Users/Clancy/.rvm/rubies/ruby-2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.0.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.1ms)
+  Rendered /Users/Clancy/.rvm/rubies/ruby-2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.0.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (18.4ms)
+
+
+Started GET "/events/new" for 127.0.0.1 at 2014-11-07 16:22:57 -0800
+Processing by EventsController#new as HTML
+  Rendered shared/_errors.html.erb (0.5ms)
+  Rendered events/_form.html.erb (9.5ms)
+  Rendered events/new.html.erb within layouts/application (10.6ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 20ms (Views: 19.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:57 -0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:57 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:57 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:57 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:57 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:57 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-07 16:22:57 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:57 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:57 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:57 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:57 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:57 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-07 16:22:57 -0800
+
+
+Started GET "/events" for 127.0.0.1 at 2014-11-07 16:23:02 -0800
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (0.4ms)[0m  SELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:23:02.128655') ORDER BY "events"."starts_at" ASC
+  Rendered events/index.html.erb within layouts/application (1.1ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 13ms (Views: 9.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/events" for 127.0.0.1 at 2014-11-07 16:23:02 -0800
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:23:02.803865') ORDER BY "events"."starts_at" ASC[0m
+  Rendered events/index.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 8ms (Views: 7.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/events" for 127.0.0.1 at 2014-11-07 16:23:03 -0800
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (0.2ms)[0m  SELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:23:03.021424') ORDER BY "events"."starts_at" ASC
+  Rendered events/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 8ms (Views: 7.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/events" for 127.0.0.1 at 2014-11-07 16:23:03 -0800
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:23:03.186482') ORDER BY "events"."starts_at" ASC[0m
+  Rendered events/index.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 9ms (Views: 8.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/events" for 127.0.0.1 at 2014-11-07 16:23:03 -0800
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (0.2ms)[0m  SELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:23:03.354545') ORDER BY "events"."starts_at" ASC
+  Rendered events/index.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 9ms (Views: 8.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/events" for 127.0.0.1 at 2014-11-07 16:23:03 -0800
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:23:03.528801') ORDER BY "events"."starts_at" ASC[0m
+  Rendered events/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 9ms (Views: 7.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/events" for 127.0.0.1 at 2014-11-07 16:23:03 -0800
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (0.1ms)[0m  SELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:23:03.982815') ORDER BY "events"."starts_at" ASC
+  Rendered events/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 10ms (Views: 8.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-07 16:23:04 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-07 16:23:04 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-07 16:23:04 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-07 16:23:04 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-07 16:23:04 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-07 16:23:04 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-07 16:23:04 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-07 16:23:04 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-07 16:23:04 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-07 16:23:04 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-07 16:23:04 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-07 16:23:04 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-07 16:23:04 -0800
+
+
+Started GET "/events" for 127.0.0.1 at 2014-11-07 16:23:13 -0800
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:23:13.519972') ORDER BY "events"."starts_at" ASC[0m
+  Rendered events/index.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 8ms (Views: 7.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-07 16:23:13 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-07 16:23:13 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-07 16:23:13 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-07 16:23:13 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-07 16:23:13 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-07 16:23:13 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-07 16:23:13 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-07 16:23:13 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-07 16:23:13 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-07 16:23:13 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-07 16:23:13 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-07 16:23:13 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-07 16:23:13 -0800
+
+
+Started GET "/events/new" for 127.0.0.1 at 2014-11-07 16:23:14 -0800
+Processing by EventsController#new as HTML
+  Rendered shared/_errors.html.erb (0.0ms)
+  Rendered events/_form.html.erb (6.5ms)
+  Rendered events/new.html.erb within layouts/application (7.1ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 15ms (Views: 13.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events" for 127.0.0.1 at 2014-11-07 16:23:17 -0800
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (0.3ms)[0m  SELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:23:17.495776') ORDER BY "events"."starts_at" ASC
+  Rendered events/index.html.erb within layouts/application (0.9ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 9ms (Views: 8.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/events/new" for 127.0.0.1 at 2014-11-07 16:23:30 -0800
+Processing by EventsController#new as HTML
+  Rendered shared/_errors.html.erb (0.0ms)
+  Rendered events/_form.html.erb (9.0ms)
+  Rendered events/new.html.erb within layouts/application (9.9ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 18ms (Views: 17.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/events" for 127.0.0.1 at 2014-11-07 16:23:41 -0800
+Processing by EventsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"j2QxjuBakEuf1yEHD4wVP7n+Rj3pwW79cL2+HEP9Tug=", "event"=>{"name"=>"Testing", "description"=>"git push origin mastergit push origin mastergit push origin mastergit push origin mastergit push origin mastergit push origin master", "location"=>"Berkeley, CA", "price"=>"55", "starts_at(1i)"=>"2014", "starts_at(2i)"=>"11", "starts_at(3i)"=>"9", "starts_at(4i)"=>"00", "starts_at(5i)"=>"23", "capacity"=>"1", "image_file_name"=>""}, "commit"=>"Create Event"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.4ms)[0m  INSERT INTO "events" ("created_at", "description", "image_file_name", "location", "name", "price", "starts_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", Sat, 08 Nov 2014 00:23:41 UTC +00:00], ["description", "git push origin mastergit push origin mastergit push origin mastergit push origin mastergit push origin mastergit push origin master"], ["image_file_name", ""], ["location", "Berkeley, CA"], ["name", "Testing"], ["price", #<BigDecimal:7fe93b738918,'0.55E2',9(18)>], ["starts_at", Sun, 09 Nov 2014 00:23:00 UTC +00:00], ["updated_at", Sat, 08 Nov 2014 00:23:41 UTC +00:00]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/events/3
+Completed 302 Found in 6ms (ActiveRecord: 2.2ms)
+
+
+Started GET "/events/3" for 127.0.0.1 at 2014-11-07 16:23:42 -0800
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mEvent Load (0.2ms)[0m  SELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36mRegistration Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "registrations" WHERE "registrations"."event_id" = ? LIMIT 1[0m  [["event_id", 3]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "registrations" WHERE "registrations"."event_id" = ?  [["event_id", 3]]
+  Rendered events/show.html.erb within layouts/application (2.7ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 12ms (Views: 11.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-07 16:23:42 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-07 16:23:42 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-07 16:23:42 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-07 16:23:42 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-07 16:23:42 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-07 16:23:42 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-07 16:23:42 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-07 16:23:42 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-07 16:23:42 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-07 16:23:42 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-07 16:23:42 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-07 16:23:42 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-07 16:23:42 -0800
+
+
+Started GET "/assets/placeholder.png" for 127.0.0.1 at 2014-11-07 16:23:42 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-07 16:23:43 -0800
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:23:43.315759') ORDER BY "events"."starts_at" ASC[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "registrations" WHERE "registrations"."event_id" = ?  [["event_id", 3]]
+  Rendered events/index.html.erb within layouts/application (3.0ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 11ms (Views: 10.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/events/3" for 127.0.0.1 at 2014-11-07 16:24:05 -0800
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mEvent Load (0.1ms)[0m  [1mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  [1m[35mRegistration Exists (0.1ms)[0m  SELECT 1 AS one FROM "registrations" WHERE "registrations"."event_id" = ? LIMIT 1  [["event_id", 3]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."event_id" = ?[0m  [["event_id", 3]]
+  Rendered events/show.html.erb within layouts/application (3.3ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 11ms (Views: 9.9ms | ActiveRecord: 0.3ms)
+
+
+Started DELETE "/events/3" for 127.0.0.1 at 2014-11-07 16:24:19 -0800
+Processing by EventsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"j2QxjuBakEuf1yEHD4wVP7n+Rj3pwW79cL2+HEP9Tug=", "id"=>"3"}
+  [1m[35mEvent Load (0.3ms)[0m  SELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mRegistration Load (0.2ms)[0m  SELECT "registrations".* FROM "registrations" WHERE "registrations"."event_id" = ?  [["event_id", 3]]
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "events" WHERE "events"."id" = ?[0m  [["id", 3]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Redirected to http://localhost:3000/events
+Completed 302 Found in 9ms (ActiveRecord: 1.4ms)
+
+
+Started GET "/events" for 127.0.0.1 at 2014-11-07 16:24:19 -0800
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:24:19.367835') ORDER BY "events"."starts_at" ASC[0m
+  Rendered events/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_flashes.html.erb (0.2ms)
+  Rendered layouts/_sidebar.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 12ms (Views: 11.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-07 16:24:19 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-07 16:24:19 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-07 16:24:19 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-07 16:24:19 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-07 16:24:19 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-07 16:24:19 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-07 16:24:19 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-07 16:24:19 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-07 16:24:19 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-07 16:24:19 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-07 16:24:19 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-07 16:24:19 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-07 16:24:19 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-07 16:24:21 -0800
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (0.1ms)[0m  SELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:24:21.249351') ORDER BY "events"."starts_at" ASC
+  Rendered events/index.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 8ms (Views: 7.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/events/new" for 127.0.0.1 at 2014-11-07 16:24:26 -0800
+Processing by EventsController#new as HTML
+  Rendered shared/_errors.html.erb (0.1ms)
+  Rendered events/_form.html.erb (7.6ms)
+  Rendered events/new.html.erb within layouts/application (8.5ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered layouts/_flashes.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 16ms (Views: 15.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/events" for 127.0.0.1 at 2014-11-07 16:24:36 -0800
+Processing by EventsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"j2QxjuBakEuf1yEHD4wVP7n+Rj3pwW79cL2+HEP9Tug=", "event"=>{"name"=>"NBA", "description"=>"git push origin mastergit push origin mastergit push origin mastergit push origin mastergit push origin master", "location"=>"Oakland, CA", "price"=>"32", "starts_at(1i)"=>"2014", "starts_at(2i)"=>"11", "starts_at(3i)"=>"10", "starts_at(4i)"=>"00", "starts_at(5i)"=>"24", "capacity"=>"1", "image_file_name"=>""}, "commit"=>"Create Event"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "events" ("created_at", "description", "image_file_name", "location", "name", "price", "starts_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", Sat, 08 Nov 2014 00:24:36 UTC +00:00], ["description", "git push origin mastergit push origin mastergit push origin mastergit push origin mastergit push origin master"], ["image_file_name", ""], ["location", "Oakland, CA"], ["name", "NBA"], ["price", #<BigDecimal:7fe93aab9188,'0.32E2',9(18)>], ["starts_at", Mon, 10 Nov 2014 00:24:00 UTC +00:00], ["updated_at", Sat, 08 Nov 2014 00:24:36 UTC +00:00]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/events/4
+Completed 302 Found in 4ms (ActiveRecord: 0.9ms)
+
+
+Started GET "/events/4" for 127.0.0.1 at 2014-11-07 16:24:36 -0800
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[35mEvent Load (0.2ms)[0m  SELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT 1  [["id", "4"]]
+  [1m[36mRegistration Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "registrations" WHERE "registrations"."event_id" = ? LIMIT 1[0m  [["event_id", 4]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "registrations" WHERE "registrations"."event_id" = ?  [["event_id", 4]]
+  Rendered events/show.html.erb within layouts/application (4.0ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 21ms (Views: 18.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-07 16:24:36 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-07 16:24:36 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-07 16:24:36 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-07 16:24:36 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-07 16:24:36 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-07 16:24:36 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-07 16:24:36 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-07 16:24:36 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-07 16:24:36 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-07 16:24:36 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-07 16:24:36 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-07 16:24:36 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-07 16:24:36 -0800
+
+
+Started GET "/assets/placeholder.png" for 127.0.0.1 at 2014-11-07 16:24:36 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-07 16:24:38 -0800
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:24:38.112821') ORDER BY "events"."starts_at" ASC[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "registrations" WHERE "registrations"."event_id" = ?  [["event_id", 4]]
+  Rendered events/index.html.erb within layouts/application (2.5ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 11ms (Views: 9.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/events/4" for 127.0.0.1 at 2014-11-07 16:24:40 -0800
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mEvent Load (0.1ms)[0m  [1mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT 1[0m  [["id", "4"]]
+  [1m[35mRegistration Exists (0.1ms)[0m  SELECT 1 AS one FROM "registrations" WHERE "registrations"."event_id" = ? LIMIT 1  [["event_id", 4]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."event_id" = ?[0m  [["event_id", 4]]
+  Rendered events/show.html.erb within layouts/application (2.2ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 10ms (Views: 8.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/events/4/registrations/new" for 127.0.0.1 at 2014-11-07 16:24:50 -0800
+Processing by RegistrationsController#new as HTML
+  Parameters: {"event_id"=>"4"}
+  [1m[35mEvent Load (0.1ms)[0m  SELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT 1  [["id", "4"]]
+  Rendered shared/_errors.html.erb (0.2ms)
+  Rendered registrations/new.html.erb within layouts/application (25.2ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 56ms (Views: 50.0ms | ActiveRecord: 0.1ms)
+
+
+Started DELETE "/events/4" for 127.0.0.1 at 2014-11-07 16:24:55 -0800
+Processing by EventsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"j2QxjuBakEuf1yEHD4wVP7n+Rj3pwW79cL2+HEP9Tug=", "id"=>"4"}
+  [1m[36mEvent Load (0.1ms)[0m  [1mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT 1[0m  [["id", "4"]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mRegistration Load (0.2ms)[0m  [1mSELECT "registrations".* FROM "registrations" WHERE "registrations"."event_id" = ?[0m  [["event_id", 4]]
+  [1m[35mSQL (0.3ms)[0m  DELETE FROM "events" WHERE "events"."id" = ?  [["id", 4]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/events
+Completed 302 Found in 5ms (ActiveRecord: 1.4ms)
+
+
+Started GET "/events" for 127.0.0.1 at 2014-11-07 16:24:55 -0800
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (0.2ms)[0m  SELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:24:55.510963') ORDER BY "events"."starts_at" ASC
+  Rendered events/index.html.erb within layouts/application (0.7ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 12ms (Views: 10.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-07 16:24:55 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-07 16:24:55 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-07 16:24:55 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-07 16:24:55 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-07 16:24:55 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-07 16:24:55 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-07 16:24:55 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-07 16:24:55 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-07 16:24:55 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-07 16:24:55 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-07 16:24:55 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-07 16:24:55 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-07 16:24:55 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-07 16:24:57 -0800
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT "events".* FROM "events" WHERE (starts_at >= '2014-11-08 00:24:57.113767') ORDER BY "events"."starts_at" ASC[0m
+  Rendered events/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 8ms (Views: 7.1ms | ActiveRecord: 0.2ms)
+  [1m[36m (42.1ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (25.0ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`) 
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateEvents (20121121153536)
+  [1m[35m (18.8ms)[0m  CREATE TABLE `events` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `location` varchar(255), `price` decimal, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.6ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES (?)  [["version", "20121121153536"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Migrating to AddFieldsToEvents (20121121175436)
+  [1m[35m (19.1ms)[0m  ALTER TABLE `events` ADD `starts_at` datetime
+  [1m[36m (245.7ms)[0m  [1mALTER TABLE `events` ADD `description` text[0m
+  [1m[35mSQL (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES (?)[0m  [["version", "20121121175436"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+Migrating to AddImageFileAndCapacityToEvents (20121210230623)
+  [1m[36m (38.4ms)[0m  [1mALTER TABLE `events` ADD `image_file_name` varchar(255)[0m
+  [1m[35m (23.9ms)[0m  ALTER TABLE `events` ADD `capacity` int(11) DEFAULT 1
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES (?)  [["version", "20121210230623"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreateRegistrations (20121214204822)
+  [1m[35m (18.1ms)[0m  CREATE TABLE `registrations` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `email` varchar(255), `how_heard` varchar(255), `event_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (14.2ms)[0m  [1mCREATE INDEX `index_registrations_on_event_id` ON `registrations` (`event_id`) [0m
+  [1m[35mSQL (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES (?)[0m  [["version", "20121214204822"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[36mSQL (1.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (1.1ms)[0m  ROLLBACK
+  [1m[36mSQL (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mSQL (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mSQL (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mSQL (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (16.1ms)[0m  INSERT INTO `events` (`created_at`, `description`, `location`, `name`, `price`, `updated_at`) VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Sun, 09 Nov 2014 03:11:54 UTC +00:00], ["description", "jfksofnryggyygygygygygygygygygygygygygygygygygygyg"], ["location", "adsfds"], ["name", "sds"], ["price", 3], ["updated_at", Sun, 09 Nov 2014 03:11:54 UTC +00:00]]
+  [1m[36m (1.6ms)[0m  [1mCOMMIT[0m
+  [1m[35mSQL (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-11 14:40:32 -0800
+  [1m[36mActiveRecord::SchemaMigration Load (10.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (1.9ms)[0m  SELECT `events`.* FROM `events` WHERE (starts_at >= '2014-11-11 22:40:32') ORDER BY `events`.`starts_at` ASC
+  Rendered events/index.html.erb within layouts/application (5.6ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_flashes.html.erb (0.7ms)
+  Rendered layouts/_sidebar.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 145ms (Views: 120.9ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-11 14:40:32 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-11 14:40:32 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-11 14:40:32 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-11 14:40:32 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-11 14:40:32 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-11 14:40:32 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-11 14:40:32 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-11 14:40:32 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-11 14:40:32 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-11 14:40:32 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-11 14:40:32 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-11 14:40:32 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-11 14:40:32 -0800
+
+
+Started GET "/assets/background.jpg" for 127.0.0.1 at 2014-11-11 14:40:33 -0800
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-11-11 14:40:33 -0800
+
+
+Started GET "/assets/arrow.png" for 127.0.0.1 at 2014-11-11 14:40:33 -0800
+
+
+Started GET "/assets/add.png" for 127.0.0.1 at 2014-11-11 14:40:33 -0800
+
+
+Started GET "/www.linkedin.com/in/clancyhwang/" for 127.0.0.1 at 2014-11-11 14:40:35 -0800
+
+ActionController::RoutingError (No route matches [GET] "/www.linkedin.com/in/clancyhwang"):
+  actionpack (4.0.5) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.0.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.0.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.0.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.5) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.5) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.5) lib/rails/engine.rb:511:in `call'
+  railties (4.0.5) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/Clancy/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/Clancy/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/Clancy/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/Clancy/.rvm/rubies/ruby-2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.0.5/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /Users/Clancy/.rvm/rubies/ruby-2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.0.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.7ms)
+  Rendered /Users/Clancy/.rvm/rubies/ruby-2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.0.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (5.9ms)
+  Rendered /Users/Clancy/.rvm/rubies/ruby-2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.0.5/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (33.5ms)
+
+
+Started GET "/www.linkedin.com/in/clancyhwang/" for 127.0.0.1 at 2014-11-11 14:40:35 -0800
+
+ActionController::RoutingError (No route matches [GET] "/www.linkedin.com/in/clancyhwang"):
+  actionpack (4.0.5) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.0.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.0.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.0.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.5) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.5) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.5) lib/rails/engine.rb:511:in `call'
+  railties (4.0.5) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/Clancy/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/Clancy/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/Clancy/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/Clancy/.rvm/rubies/ruby-2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.0.5/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /Users/Clancy/.rvm/rubies/ruby-2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.0.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.9ms)
+  Rendered /Users/Clancy/.rvm/rubies/ruby-2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.0.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.3ms)
+  Rendered /Users/Clancy/.rvm/rubies/ruby-2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.0.5/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (24.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-11 14:41:10 -0800
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.5ms)[0m  [1mSELECT `events`.* FROM `events` WHERE (starts_at >= '2014-11-11 22:41:10') ORDER BY `events`.`starts_at` ASC[0m
+  Rendered events/index.html.erb within layouts/application (1.3ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+  Rendered layouts/_flashes.html.erb (0.2ms)
+  Rendered layouts/_sidebar.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 18ms (Views: 16.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-11 14:41:10 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-11 14:41:10 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-11 14:41:10 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-11 14:41:10 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-11 14:41:10 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-11 14:41:10 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-11 14:41:10 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-11 14:41:10 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-11 14:41:10 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-11 14:41:10 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-11 14:41:10 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-11 14:41:10 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-11 14:41:10 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-11 14:41:30 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-11 14:41:30 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-11 14:41:30 -0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-11 14:41:30 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-11 14:41:30 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-11 14:41:30 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-11 14:41:30 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-11 14:43:42 -0800
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (1.3ms)[0m  SELECT `events`.* FROM `events` WHERE (starts_at >= '2014-11-11 22:43:42') ORDER BY `events`.`starts_at` ASC
+  Rendered events/index.html.erb within layouts/application (1.9ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 16ms (Views: 13.7ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-11 14:43:42 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-11 14:43:42 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-11 14:43:42 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-11 14:43:42 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-11 14:43:42 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-11 14:43:42 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-11 14:43:42 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-11 14:43:42 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-11 14:43:42 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-11 14:43:42 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-11 14:43:42 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-11 14:43:42 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-11 14:43:42 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-11 15:08:22 -0800
+  [1m[36mActiveRecord::SchemaMigration Load (9.8ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (0.5ms)[0m  SELECT `events`.* FROM `events` WHERE (starts_at >= '2014-11-11 23:08:23') ORDER BY `events`.`starts_at` ASC
+  Rendered events/index.html.erb within layouts/application (9.6ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_flashes.html.erb (0.6ms)
+  Rendered layouts/_sidebar.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 146ms (Views: 127.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-11 15:08:23 -0800
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.5ms)[0m  [1mSELECT `events`.* FROM `events` WHERE (starts_at >= '2014-11-11 23:08:23') ORDER BY `events`.`starts_at` ASC[0m
+  Rendered events/index.html.erb within layouts/application (1.3ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 11ms (Views: 10.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-11 15:08:23 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-11 15:08:23 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-11 15:08:23 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-11 15:08:23 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-11 15:08:23 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-11 15:08:23 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-11 15:08:23 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-11 15:08:23 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-11 15:08:23 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-11 15:08:23 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-11 15:08:23 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-11 15:08:23 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-11 15:08:23 -0800
+
+
+Started GET "/assets/background.jpg" for 127.0.0.1 at 2014-11-11 15:08:23 -0800
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-11-11 15:08:24 -0800
+
+
+Started GET "/assets/add.png" for 127.0.0.1 at 2014-11-11 15:08:24 -0800
+
+
+Started GET "/assets/arrow.png" for 127.0.0.1 at 2014-11-11 15:08:24 -0800
+
+
+Started GET "/events/new" for 127.0.0.1 at 2014-11-11 15:08:29 -0800
+Processing by EventsController#new as HTML
+  Rendered shared/_errors.html.erb (3.2ms)
+  Rendered events/_form.html.erb (45.3ms)
+  Rendered events/new.html.erb within layouts/application (47.7ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_flashes.html.erb (0.6ms)
+  Rendered layouts/_sidebar.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 69ms (Views: 61.3ms | ActiveRecord: 4.5ms)
+
+
+Started POST "/events" for 127.0.0.1 at 2014-11-11 15:08:45 -0800
+Processing by EventsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"j2QxjuBakEuf1yEHD4wVP7n+Rj3pwW79cL2+HEP9Tug=", "event"=>{"name"=>"Testing", "description"=>"TestingTestingTestingTestingTesting", "location"=>"Berkeley, CA", "price"=>"4", "starts_at(1i)"=>"2014", "starts_at(2i)"=>"11", "starts_at(3i)"=>"11", "starts_at(4i)"=>"23", "starts_at(5i)"=>"08", "capacity"=>"3", "image_file_name"=>""}, "commit"=>"Create Event"}
+  [1m[35mSQL (0.7ms)[0m  BEGIN
+  [1m[36mSQL (14.4ms)[0m  [1mINSERT INTO `events` (`capacity`, `created_at`, `description`, `image_file_name`, `location`, `name`, `price`, `starts_at`, `updated_at`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["capacity", 3], ["created_at", Tue, 11 Nov 2014 23:08:45 UTC +00:00], ["description", "TestingTestingTestingTestingTesting"], ["image_file_name", ""], ["location", "Berkeley, CA"], ["name", "Testing"], ["price", 4], ["starts_at", Tue, 11 Nov 2014 23:08:00 UTC +00:00], ["updated_at", Tue, 11 Nov 2014 23:08:45 UTC +00:00]]
+  [1m[35m (1.3ms)[0m  COMMIT
+Redirected to http://localhost:3000/events/2
+Completed 302 Found in 25ms (ActiveRecord: 16.4ms)
+
+
+Started GET "/events/2" for 127.0.0.1 at 2014-11-11 15:08:45 -0800
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEvent Load (20.8ms)[0m  [1mSELECT `events`.* FROM `events` WHERE `events`.`id` = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mRegistration Exists (3.7ms)[0m  SELECT 1 AS one FROM `registrations` WHERE `registrations`.`event_id` = ? LIMIT 1  [["event_id", 2]]
+  [1m[36m (1.1ms)[0m  [1mSELECT COUNT(*) FROM `registrations` WHERE `registrations`.`event_id` = ?[0m  [["event_id", 2]]
+  Rendered events/show.html.erb within layouts/application (74.2ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 116ms (Views: 79.4ms | ActiveRecord: 28.6ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-11 15:08:45 -0800
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-11-11 15:08:45 -0800
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-11-11 15:08:45 -0800
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2014-11-11 15:08:45 -0800
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-11-11 15:08:45 -0800
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-11-11 15:08:45 -0800
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-11-11 15:08:45 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-11 15:08:45 -0800
+
+
+Started GET "/assets/registrations.js?body=1" for 127.0.0.1 at 2014-11-11 15:08:45 -0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-11 15:08:45 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-11 15:08:45 -0800
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2014-11-11 15:08:45 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-11 15:08:45 -0800
+
+
+Started GET "/assets/placeholder.png" for 127.0.0.1 at 2014-11-11 15:08:45 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-11 15:18:23 -0800
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (0.6ms)[0m  SELECT `events`.* FROM `events` WHERE (starts_at >= '2014-11-11 23:18:23') ORDER BY `events`.`starts_at` ASC
+  Rendered events/index.html.erb within layouts/application (2.1ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+  Rendered layouts/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 18ms (Views: 16.3ms | ActiveRecord: 0.6ms)
